@@ -584,13 +584,14 @@
   }
 
   function fire() {
-    reminderTipText.textContent = pickTip();
+    var tip = pickTip();
+    reminderTipText.textContent = tip;
     reminderCard.classList.add('show');
 
     if ('Notification' in window && Notification.permission === 'granted' && document.hidden) {
       try {
         new Notification('Posture Check', {
-          body: 'Time for a quick posture reset.'
+          body: tip
         });
       } catch (e) {
         /* notification unavailable, continue silently */
